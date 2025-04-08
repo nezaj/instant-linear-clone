@@ -1,0 +1,17 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="120" height="120" rx="20" fill="#4F46E5"/>
+  <!-- Checkbox 1 -->
+  <rect x="30" y="34" width="12" height="12" rx="2" fill="white"/>
+  <!-- Line 1 -->
+  <rect x="48" y="37" width="42" height="6" rx="3" fill="white"/>
+
+  <!-- Checkbox 2 -->
+  <rect x="30" y="54" width="12" height="12" rx="2" fill="white"/>
+  <!-- Line 2 -->
+  <rect x="48" y="57" width="42" height="6" rx="3" fill="white"/>
+
+  <!-- Checkbox 3 -->
+  <rect x="30" y="74" width="12" height="12" rx="2" fill="white"/>
+  <!-- Line 3 -->
+  <rect x="48" y="77" width="42" height="6" rx="3" fill="white"/>
+</svg>
