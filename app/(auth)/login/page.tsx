@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import Router from "next/router";
 import {
   Card,
   CardContent,
@@ -18,12 +18,11 @@ import { toast } from 'sonner';
 import { db } from "@/lib/db";
 
 export default function LoginPage() {
-  const router = useRouter();
   const { isLoading, user } = db.useAuth();
 
   useEffect(() => {
     if (!isLoading && user) {
-      router.push("/");
+      Router.push("/");
     }
   }, [user, isLoading]);
 
@@ -70,7 +69,7 @@ function EmailStep({ onSendEmail }: { onSendEmail: (email: string) => void }) {
       onSubmit={handleSubmit}
       className="flex flex-col space-y-4"
     >
-      <h2 className="text-xl font-bold">Let's log you in</h2>
+      <h2 className="text-xl font-bold">{"Let's log you in"}</h2>
       <p className="text-gray-700">
         Enter your email to receive a verification code.
       </p>

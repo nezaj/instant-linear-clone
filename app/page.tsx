@@ -4,15 +4,14 @@ import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
-import { useRouter } from "next/navigation";
+import Router from "next/router";
 
 export default function Home() {
-  const router = useRouter();
   const { isLoading, error, user } = db.useAuth();
 
   useEffect(() => {
     if (!isLoading && !user) {
-      router.push("/login");
+      Router.push("/login");
     }
   }, [user, isLoading]);
 
