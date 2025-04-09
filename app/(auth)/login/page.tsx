@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -44,20 +44,6 @@ const CodeSchema = z.object({
 
 
 export default function LoginPage() {
-  const router = useRouter();
-  const { isLoading, user } = db.useAuth();
-
-  useEffect(() => {
-    if (user) {
-      router.push("/");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
-
-  if (isLoading || user) {
-    return null;
-  }
-
   return (
     <LoginCard />
   );
@@ -140,10 +126,16 @@ function EmailStep({ onSendEmail, initialEmail }: EmailStepProps) {
             )}
           />
         </CardContent >
-        <CardFooter>
+        <CardFooter className="flex flex-col space-y-4">
           <Button type="submit" className="w-full">
             Send Code
           </Button>
+          <CardDescription className="inline">
+            {"Don't have an account? "}
+            <Button asChild variant="link" size="sm" className="p-0">
+              <Link href="/sign-up">Create one instead</Link>
+            </Button>
+          </CardDescription>
         </CardFooter>
       </form >
     </Form>
@@ -224,7 +216,7 @@ function CodeStep({ email, onBack }: CodeStepProps) {
           </Button>
           <CardDescription className="inline">
             Didn&apos;t receive a code? Wait a moment or{" "}
-            <Button type="button" variant="link" onClick={onBack} size="sm" className="p-0" disabled={isVerifying}>try again.</Button>
+            <Button variant="link" onClick={onBack} size="sm" className="p-0" disabled={isVerifying}>try again.</Button>
           </CardDescription>
         </CardFooter>
       </form>

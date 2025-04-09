@@ -3,13 +3,30 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { db } from "@/lib/db";
 
 export default function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const router = useRouter();
+  const { isLoading, user } = db.useAuth();
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (user) {
+      router.push("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  if (isLoading || user) {
+    return null;
+  }
+
   const isLoginPage = pathname === "/login";
 
   return (
