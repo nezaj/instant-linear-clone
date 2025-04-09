@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useState, useEffect } from "react";
-import Router from "next/router";
+import { useRouter } from "next/navigation";
 import {
   Card,
   CardContent,
@@ -18,12 +18,14 @@ import { toast } from 'sonner';
 import { db } from "@/lib/db";
 
 export default function LoginPage() {
+  const router = useRouter();
   const { isLoading, user } = db.useAuth();
 
   useEffect(() => {
     if (!isLoading && user) {
-      Router.push("/");
+      router.push("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, isLoading]);
 
   if (isLoading || user) {

@@ -1,18 +1,20 @@
 'use client';
 
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/db";
-import Router from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   const { isLoading, error, user } = db.useAuth();
 
   useEffect(() => {
     if (!isLoading && !user) {
-      Router.push("/login");
+      router.push("/login");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, isLoading]);
 
   if (isLoading || !user) { return null; }
