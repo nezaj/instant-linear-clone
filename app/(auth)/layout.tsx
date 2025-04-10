@@ -13,8 +13,8 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   const router = useRouter();
-  const { isLoading, user } = db.useAuth();
   const pathname = usePathname();
+  const { isLoading, user } = db.useAuth();
 
   useEffect(() => {
     if (user) {
